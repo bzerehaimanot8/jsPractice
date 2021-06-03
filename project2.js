@@ -6,30 +6,31 @@ const clearBtn = document.querySelector('.clear-task')
 const filter = document.querySelector('#filter')
 const taskInput = document.querySelector('#task')
 
-// Load all event listeners
+// Loads up all event listeners
 loadEventListeners()
 
 // loadEventListners function
 function loadEventListeners() {
-  // add task event
+  // add task event (event, f(x) that executes event)
   form.addEventListener('submit', addTask)
 }
 
 // Add task
 function addTask(e){
+  // if input field is empty when submitting, alert user, otherwise create list item and append it to the tasklist with the input's value
   if(taskInput.value === '') {
   alert('Add a task!')
 }
 
   // create li element
   const li = document.createElement('li')
-  // add a class
+  // attach a class to the li 
   li.className = 'collection-item'
   // create text node and append to the li
   li.appendChild(document.createTextNode(taskInput.value))
   // create new link element
   const link = document.createElement('a')
-  // add a class
+  // attach a class (in materialize "secondary content" is needed to add an innerHTML) 
   link.className = 'delete-item secondary-content'
   // add icon inner html
   link.innerHTML = '<i class="fa fa-remove"></i>'
