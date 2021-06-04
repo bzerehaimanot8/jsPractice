@@ -13,14 +13,18 @@ loadEventListeners()
 function loadEventListeners() {
   // add task event (event, f(x) that executes event)
   form.addEventListener('submit', addTask)
+  // remove task event
+  taskList.addEventListener('click', removeTask)
+  // clear list event
+  clearBtn.addEventListener('click', clearTasks)
 }
 
 // Add task
-function addTask(e){
+function addTask(e) {
   // if input field is empty when submitting, alert user, otherwise create list item and append it to the tasklist with the input's value
-  if(taskInput.value === '') {
-  alert('Add a task!')
-}
+  if (taskInput.value === '') {
+    alert('Add a task!')
+  }
 
   // create li element
   const li = document.createElement('li')
@@ -46,4 +50,25 @@ function addTask(e){
   e.preventDefault()
 }
 
+// removing task from the tasklist
+function removeTask(e) {
+  //
+  if (e.target.parentElement.classList.contains('delete-item')) {
+    if (confirm('Are you Sure?')) {
+      e.target.parentElement.parentElement.remove()
+    }
+  }
+  // console.log(e.target);
+}
 
+function clearTasks() {
+// slower way
+taskList.innerHTML = ''
+
+// faster way
+while(taskList.firstChild) {
+
+taskList.removeChild(taskList.firstChild)
+
+}
+}
