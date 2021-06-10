@@ -38,7 +38,7 @@ function getTasks() {
 
 
 
-  tasks.forEach(function (task) {
+  tasks.forEach(function(task) {
     // create li element
     const li = document.createElement('li')
     // attach a class to the li 
@@ -137,12 +137,13 @@ function removeTaskFromLocalStorage(taskItem) {
     //if there is, set it to whatever is there
     tasks = JSON.parse(localStorage.getItem('tasks'))
   }
-  tasks.forEach(function (task, index) {
+  tasks.forEach(function(task, index) {
     if (taskItem.textContent === task) {
       tasks.splice(index, 1)
     }
-    localStorage.setItem('tasks', JSON.stringify(tasks))
+    
   })
+  localStorage.setItem('tasks', JSON.stringify(tasks))
 }
 
 // clearing task list
@@ -156,8 +157,14 @@ function clearTasks() {
     // remove it until there are no more
     taskList.removeChild(taskList.firstChild)
   }
+  // clear from local storage
+  clearTaskFromLocalStorage()
 }
 
+// Clear Tasks from local storage
+function clearTaskFromLocalStorage() {
+  localStorage.clear()
+}
 // filtering through task list
 
 function filterTasks(e) {
