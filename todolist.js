@@ -137,6 +137,7 @@ function removeTaskFromLocalStorage(taskItem) {
     //if there is, set it to whatever is there
     tasks = JSON.parse(localStorage.getItem('tasks'))
   }
+  //as we loop through the array, once the list-item we're trying to delete matches it pair in the iteration, we splice it out
   tasks.forEach(function(task, index) {
     if (taskItem.textContent === task) {
       tasks.splice(index, 1)
@@ -175,6 +176,7 @@ function filterTasks(e) {
   document.querySelectorAll('.collection-item').forEach(function (task) {
     const item = task.firstChild.textContent
     // looks for the index of text within item
+    // it checks if the first letter typed is in the list item collection, if not, the list item wont display
     if (item.toLowerCase().indexOf(text) != -1) {
       //if theres a match, it'll display
       task.style.display = 'block'
